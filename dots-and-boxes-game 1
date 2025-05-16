@@ -1,0 +1,43 @@
+import pygame
+import sys
+
+# Initialize Pygame
+pygame.init()
+
+# Screen dimensions
+width, height = 600, 600
+screen = pygame.display.set_mode((width, height))
+pygame.display.set_caption("Dots and Boxes")
+
+# Colors
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+RED = (255, 0, 0)
+BLUE = (0, 0, 255)
+
+# Grid settings
+grid_size = 15
+dot_radius = 5
+spacing = 40
+
+# Create grid
+grid = [[(j * spacing + spacing, i * spacing + spacing) for j in range(grid_size)] for i in range(grid_size)]
+
+# Game loop
+running = True
+while running:
+    screen.fill(WHITE)
+    
+    # Draw dots
+    for row in grid:
+        for dot in row:
+            pygame.draw.circle(screen, BLACK, dot, dot_radius)
+    
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+    
+    pygame.display.flip()
+
+pygame.quit()
+sys.exit()
